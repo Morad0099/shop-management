@@ -20,7 +20,7 @@ jobs:
           debug: true
           use_insecure_cipher: true
           script: |
-           cd domains/flavorkicosmetics.shop/shop-management
+           cd domains/flavorkicosmetics.shop
            php artisan down
            git checkout master
            git pull origin master
