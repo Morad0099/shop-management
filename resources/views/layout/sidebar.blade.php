@@ -9,22 +9,22 @@
                 <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
             </div>
             <div class="ms-3">
-                <h6 class="mb-0">John Doe</h6>
-                <span>Admin</span>
+                <h6 class="mb-0">{{ strtoupper(Auth::user()->name ?? null) }}</h6>
+                <span>{{ ucfirst(Auth::user()->role ?? null) }}</span>
             </div>
         </div>
         <div class="navbar-nav w-100">
             <a href="{{ route('dashboard') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
-                <div class="dropdown-menu bg-transparent border-0">
-                    <a href="#" class="dropdown-item">Buttons</a>
-                    <a href="#" class="dropdown-item">Typography</a>
-                    <a href="#" class="dropdown-item">Other Elements</a>
-                </div>
-            </div>
-            <a href="#" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
-            <a href="#" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
-        </div>
+                <a href="{{ route('products.index') }}" class="nav-item nav-link">
+                    <i class="fa fa-box"></i>
+                    <span>Products</span>
+                </a>
+                <a class="nav-item nav-link" href="{{ route('sales.index') }}">
+                    <i class="fa fa-shopping-cart"></i> Sales
+                </a>            
+                <a class="nav-link" href="{{ route('reports.index') }}">
+                    <i class="fa fa-file-alt"></i> Reports
+                </a>
+         </div>
     </nav>
 </div>
