@@ -16,22 +16,16 @@ class CustomAuthController extends Controller
      */
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+        $credentials = $request->only('email', 'password');
 
-        $user = User::where('email', $request->input('email'))->first();
-
-        if ($user && Hash::check($request->input('password'), $user->password)) {
-            Auth::login($user, $request->boolean('remember'));
-
-            return redirect()->intended('dashboard'); // Adjust the redirect URL as needed
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('dashboard');
         }
 
-        throw ValidationException::withMessages([
-            'email' => trans('auth.failed'),
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
         ]);
     }
+
 
 }
