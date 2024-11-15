@@ -5,7 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RouteController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/login', [CustomAuthController::class, 'login']);
+Route::post('/custom-login', [CustomAuthController::class, 'login'])->name('custom-login');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [RouteController::class, 'dashboard'])->name('dashboard');
