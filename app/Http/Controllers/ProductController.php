@@ -8,11 +8,29 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::orderBy('created_at', 'desc')->paginate(10);
-        return view('modules.products.index', compact('products'));
+        $query = Product::query();
+
+        // Apply name filter
+        if ($request->has('name') && $request->name) {
+            $query->where('name', 'LIKE', '%' . $request->name . '%');
+        }
+
+        // Apply category filter
+        if ($request->has('category') && $request->category) {
+            $query->where('category', $request->category);
+        }
+
+        // Paginate results
+        $products = $query->paginate(10);
+
+        // Get unique categories for the filter dropdown
+        $categories = Product::pluck('category')->unique();
+
+        return view('modules.products.index', compact('products', 'categories'));
     }
+
 
     public function create()
     {

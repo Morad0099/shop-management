@@ -9,6 +9,31 @@
                 <h6>Product List</h6>
                 <a href="{{ route('products.create') }}" class="btn btn-sm btn-primary">Add Product</a>
             </div>
+
+            <!-- Filter Form -->
+            <form method="GET" class="mb-4">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <input type="text" name="name" class="form-control" placeholder="Search by Name"
+                            value="{{ request('name') }}">
+                    </div>
+                    <div class="col-md-4">
+                        <select name="category" class="form-select">
+                            <option value="">All Categories</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category }}" {{ request('category') == $category ? 'selected' : '' }}>
+                                    {{ $category }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                        <a href="{{ route('products.index') }}" class="btn btn-secondary">Clear</a>
+                    </div>
+                </div>
+            </form>
+
             <div class="table-responsive">
                 <table class="table table-striped align-middle">
                     <thead>
@@ -57,6 +82,11 @@
                         @endforelse
                     </tbody>
                 </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-3 d-flex justify-content-center">
+                {{ $products->links('pagination::bootstrap-4') }}
             </div>
         </div>
     </div>
