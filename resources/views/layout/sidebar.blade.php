@@ -14,17 +14,33 @@
             </div>
         </div>
         <div class="navbar-nav w-100">
-            <a href="{{ route('dashboard') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                <a href="{{ route('products.index') }}" class="nav-item nav-link">
-                    <i class="fa fa-box"></i>
-                    <span>Products</span>
+            <a href="{{ route('dashboard') }}" class="nav-item nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
+                <i class="fa fa-tachometer-alt me-2"></i>Dashboard
+            </a>
+            @if (Auth::user()->role === 'admin')
+                <a href="{{ route('products.index') }}" class="nav-item nav-link {{ request()->is('products*') ? 'active' : '' }}">
+                    <i class="fa fa-box"></i> Products
                 </a>
-                <a class="nav-item nav-link" href="{{ route('sales.index') }}">
+                <a href="{{ route('sales.index') }}" class="nav-item nav-link {{ request()->is('sales*') ? 'active' : '' }}">
                     <i class="fa fa-shopping-cart"></i> Sales
-                </a>            
-                <a class="nav-link" href="{{ route('reports.index') }}">
+                </a>
+                <a href="{{ route('reports.index') }}" class="nav-item nav-link {{ request()->is('reports*') ? 'active' : '' }}">
                     <i class="fa fa-file-alt"></i> Reports
                 </a>
-         </div>
+                <a href="{{ route('low-stock.index') }}" class="nav-item nav-link {{ request()->is('low-stock*') ? 'active' : '' }}">
+                    <i class="fa fa-exclamation-triangle"></i> Low Stock
+                </a>
+            @elseif (Auth::user()->role === 'attendant')
+                <a href="{{ route('sales.index') }}" class="nav-item nav-link {{ request()->is('sales*') ? 'active' : '' }}">
+                    <i class="fa fa-shopping-cart"></i> Sales
+                </a>
+                <a href="{{ route('products.index') }}" class="nav-item nav-link {{ request()->is('products*') ? 'active' : '' }}">
+                    <i class="fa fa-box"></i> Products
+                </a>
+                <a href="{{ route('low-stock.index') }}" class="nav-item nav-link {{ request()->is('low-stock*') ? 'active' : '' }}">
+                    <i class="fa fa-exclamation-triangle"></i> Low Stock
+                </a>
+            @endif
+        </div>
     </nav>
 </div>

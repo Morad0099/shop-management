@@ -35,6 +35,14 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <!-- Include Date Range Picker CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <!-- Include Date Range Picker JS -->
+    <script src="https://cdn.jsdelivr.net/npm/moment/min/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+
 </head>
 
 <body>

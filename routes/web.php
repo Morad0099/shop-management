@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\CustomAuthController;
+use App\Http\Controllers\LowStockController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
@@ -15,7 +16,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('products', ProductController::class);
     Route::resource('sales', SaleController::class);
     Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('/dashboard/chart-data', [RouteController::class, 'getChartData'])->name('dashboard.chart-data');
     Route::get('/stock_history', [RouteController::class, 'stockHistory'])->name('products.stock-history');
+    Route::get('/reports/export/{type}', [ReportController::class, 'export'])->name('reports.export');
+    Route::get('/low-stock', [LowStockController::class, 'index'])->name('low-stock.index');
+    Route::get('/low-stock/export/{type}', [LowStockController::class, 'export'])->name('low-stock.export');
 });
 
 

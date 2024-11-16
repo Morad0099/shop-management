@@ -30,55 +30,65 @@
         return false;
     });
 
-    // Sales Overview Chart
-    if ($('#sales-chart').length) {
-        const salesCtx = $('#sales-chart').get(0).getContext('2d');
-        new Chart(salesCtx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [{
-                    label: 'Sales ($)',
-                    data: [1000, 2000, 3000, 5000, 7000, 10000, 8500, 9000, 9500, 12000, 15000, 20000],
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderWidth: 2,
-                    fill: true,
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { display: true },
-                },
-                scales: {
-                    x: { display: true },
-                    y: { display: true },
-                },
-            },
-        });
-    }
+    // Fetch chart data
+    $.ajax({
+        url: '/dashboard/chart-data',
+        method: 'GET',
+        success: function (data) {
+            // Populate Sales Overview Chart
+            if ($('#sales-chart').length) {
+                const salesCtx = $('#sales-chart').get(0).getContext('2d');
+                new Chart(salesCtx, {
+                    type: 'line',
+                    data: {
+                        labels: Object.keys(data.monthlySales).map(month => `Month ${month}`),
+                        datasets: [{
+                            label: 'Sales ($)',
+                            data: Object.values(data.monthlySales),
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderWidth: 2,
+                            fill: true,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { display: true },
+                        },
+                        scales: {
+                            x: { display: true },
+                            y: { display: true },
+                        },
+                    },
+                });
+            }
 
-    // Revenue by Product Chart
-    if ($('#revenue-chart').length) {
-        const revenueCtx = $('#revenue-chart').get(0).getContext('2d');
-        new Chart(revenueCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Lipstick', 'Foundation', 'Eyeliner', 'Mascara', 'Blush'],
-                datasets: [{
-                    data: [500, 1000, 800, 400, 300],
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
-                    hoverOffset: 4,
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'bottom' },
-                },
-            },
-        });
-    }
+            // Populate Revenue by Product Chart
+            if ($('#revenue-chart').length) {
+                const revenueCtx = $('#revenue-chart').get(0).getContext('2d');
+                new Chart(revenueCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: Object.keys(data.productRevenue),
+                        datasets: [{
+                            data: Object.values(data.productRevenue),
+                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
+                            hoverOffset: 4,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { position: 'bottom' },
+                        },
+                    },
+                });
+            }
+        },
+        error: function (err) {
+            console.error('Error fetching chart data:', err);
+        }
+    });
 
 })(jQuery);
