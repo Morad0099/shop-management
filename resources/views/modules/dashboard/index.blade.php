@@ -92,7 +92,7 @@
                                         <td>{{ $sale->created_at->format('Y-m-d') }}</td>
                                         <td>{{ $sale->product->name }}</td>
                                         <td>{{ $sale->quantity }}</td>
-                                        <td>${{ number_format($sale->total_price, 2) }}</td>
+                                        <td>GHS{{ number_format($sale->total_price, 2) }}</td>
                                         <td><a class="btn btn-sm btn-primary" href="#">Details</a></td>
                                     </tr>
                                 @empty
