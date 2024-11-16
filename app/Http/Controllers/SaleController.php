@@ -30,14 +30,32 @@ class SaleController extends Controller
             'products.*.quantity' => 'required|integer|min:1',
             'sale_date' => 'required|date',
         ]);
-    
+
+        $errorMessages = [];
+
+        foreach ($validated['products'] as $index => $productData) {
+            $product = Product::findOrFail($productData['product_id']);
+
+            // Check stock availability
+            if ($productData['quantity'] > $product->stock) {
+                $errorMessages[] = "The quantity for '{$product->name}' exceeds available stock ({$product->stock}).";
+                continue;
+            }
+        }
+
+        // If there are errors, return back with the error messages
+        if (!empty($errorMessages)) {
+            return redirect()->back()->withErrors(['products' => $errorMessages])->withInput();
+        }
+
+        // Proceed with the sale creation
         foreach ($validated['products'] as $productData) {
             $product = Product::findOrFail($productData['product_id']);
-    
+
             // Update stock
             $newStock = $product->stock - $productData['quantity'];
             $product->update(['stock' => $newStock]);
-    
+
             // Log stock history
             StockHistory::create([
                 'product_id' => $product->id,
@@ -45,7 +63,7 @@ class SaleController extends Controller
                 'new_stock' => $newStock,
                 'reason' => 'Sale',
             ]);
-    
+
             // Record the sale
             Sale::create([
                 'product_id' => $productData['product_id'],
@@ -55,10 +73,11 @@ class SaleController extends Controller
                 'sale_date' => $validated['sale_date'],
             ]);
         }
-    
+
         return redirect()->route('sales.index')->with('success', 'Sale(s) recorded and stock updated successfully.');
     }
-    
+
+
 
 
     public function destroy(Sale $sale)

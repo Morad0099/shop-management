@@ -54,14 +54,16 @@
                         </tbody>
                     </table>
                 </div>
+                
                 @if($lowStockProducts->isNotEmpty())
                     <div class="mt-3">
-                        <span class="badge bg-danger">Critical:</span> Stock ≤ 3 |
-                        <span class="badge bg-warning">Low:</span> Stock ≤ 5 |
-                        <span class="badge bg-info">Moderate:</span> Stock > 5
+                        <span class="badge bg-danger">Critical:</span> Stock Less Than or Equal to 3 |
+                        <span class="badge bg-warning">Low:</span> Stock Less Than or Equal to 5 |
+                        <span class="badge bg-info">Moderate:</span> Stock Greater Than 5
                     </div>
                 @endif
             </div>
+            
         </div>
     </div>
 </div>

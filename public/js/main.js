@@ -43,7 +43,7 @@
                     data: {
                         labels: Object.keys(data.monthlySales).map(month => `Month ${month}`),
                         datasets: [{
-                            label: 'Sales ($)',
+                            label: 'Sales (GHS)',
                             data: Object.values(data.monthlySales),
                             borderColor: 'rgba(54, 162, 235, 1)',
                             backgroundColor: 'rgba(54, 162, 235, 0.2)',

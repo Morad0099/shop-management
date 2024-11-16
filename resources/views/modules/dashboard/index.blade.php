@@ -93,7 +93,7 @@
                                         <td>{{ $sale->product->name }}</td>
                                         <td>{{ $sale->quantity }}</td>
                                         <td>GHS{{ number_format($sale->total_price, 2) }}</td>
-                                        <td><a class="btn btn-sm btn-primary" href="#">Details</a></td>
+                                        <td><a class="btn btn-sm btn-primary" href="{{ route('sales.index') }}">Details</a></td>
                                     </tr>
                                 @empty
                                     <tr>

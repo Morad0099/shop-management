@@ -32,7 +32,7 @@
                                 <td>GHS{{ number_format($sale->total_price, 2) }}</td>
                                 <td>{{ $sale->attendant ?? 'N/A' }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-primary">Details</a>
+                                    {{-- <a href="#" class="btn btn-sm btn-primary">Details</a> --}}
                                     <form action="{{ route('sales.destroy', $sale->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')

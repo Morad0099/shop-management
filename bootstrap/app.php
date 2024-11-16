@@ -11,7 +11,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+
+        // Or for route-specific middleware:
+        $middleware->alias(['audit.log' => \App\Http\Middleware\AuditLogMiddleware::class]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
