@@ -49,7 +49,12 @@ class ProductController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('products', 'public');
+            $path = $request->file('image')->storeAs(
+                'products',
+                time() . '_' . $request->file('image')->getClientOriginalName(),
+                'public_uploads' // A custom disk pointing to 'public/uploads' in filesystem.php
+            );
+            $validated['image'] = config('app.url') . '/uploads/' . $path;
         }
 
         Product::create($validated);
@@ -75,10 +80,19 @@ class ProductController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
+            // Delete old image if it exists
             if ($product->image) {
-                Storage::disk('public')->delete($product->image); // Delete old image
+                $relativePath = str_replace(config('app.url') . '/uploads/', '', $product->image); // Remove full URL part
+                Storage::disk('public_uploads')->delete($relativePath);
             }
-            $validated['image'] = $request->file('image')->store('products', 'public');
+    
+            // Store new image and concatenate app URL
+            $path = $request->file('image')->storeAs(
+                'products',
+                time() . '_' . $request->file('image')->getClientOriginalName(),
+                'public_uploads' // Custom disk
+            );
+            $validated['image'] = config('app.url') . '/uploads/' . $path;
         }
 
         $product->update($validated);

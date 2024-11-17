@@ -51,7 +51,7 @@
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex justify-content-between mb-4">
                         <h6>Sales Overview</h6>
-                        <a href="#">View More</a>
+                        {{-- <a href="#">View More</a> --}}
                     </div>
                     <canvas id="sales-chart"></canvas>
                 </div>
@@ -60,7 +60,7 @@
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex justify-content-between mb-4">
                         <h6>Revenue by Product</h6>
-                        <a href="#">View More</a>
+                        {{-- <a href="#">View More</a> --}}
                     </div>
                     <canvas id="revenue-chart"></canvas>
                 </div>
@@ -73,7 +73,7 @@
                 <div class="bg-light rounded p-4">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h6>Recent Sales</h6>
-                        <a href="#">View All</a>
+                        {{-- <a href="#">View All</a> --}}
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped align-middle">

@@ -44,8 +44,12 @@ class Product extends Model
      */
     public function getImageUrlAttribute()
     {
-        return $this->image ? url('storage/' . $this->image) : null;
+        if ($this->image) {
+            return config('app.url') . '/storage/' . $this->image;
+        }
+        return null; // Default fallback if no image
     }
+
 
     public function stockHistories()
     {

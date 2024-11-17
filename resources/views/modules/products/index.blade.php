@@ -51,8 +51,8 @@
                             <tr>
                                 <td>
                                     @if ($product->image_url)
-                                        <img src="{{ $product->image_url }}" alt="{{ $product->name }}"
-                                            style="width: 100px; height: auto;">
+                                    <img src="{{ $product->image }}" alt="{{ $product->name }}" style="width: 100px; height: auto;">
+
                                     @else
                                         No Image
                                     @endif
