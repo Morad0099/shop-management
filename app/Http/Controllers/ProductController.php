@@ -45,7 +45,7 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|file|max:2048',
         ]);
 
         if ($request->hasFile('image')) {
@@ -76,7 +76,7 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|file|max:2048',
         ]);
 
         if ($request->hasFile('image')) {
