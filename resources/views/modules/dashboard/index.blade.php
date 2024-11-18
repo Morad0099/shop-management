@@ -90,8 +90,8 @@
                                 @forelse ($recentSales as $sale)
                                     <tr>
                                         <td>{{ $sale->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $sale->product->name }}</td>
-                                        <td>{{ $sale->quantity }}</td>
+                                        <td>{{ $sale->product->name ?? null}}</td>
+                                        <td>{{ $sale->quantity ?? null}}</td>
                                         <td>GHS{{ number_format($sale->total_price, 2) }}</td>
                                         <td><a class="btn btn-sm btn-primary" href="{{ route('sales.index') }}">Details</a></td>
                                     </tr>
