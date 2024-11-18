@@ -27,8 +27,8 @@
                             @forelse ($sales as $sale)
                             <tr>
                                 <td>{{ $sale->sale_date }}</td>
-                                <td>{{ $sale->product->name }}</td>
-                                <td>{{ $sale->quantity }}</td>
+                                <td>{{ $sale->product->name ?? 'N/A'}}</td>
+                                <td>{{ $sale->quantity ?? 'N/A'}}</td>
                                 <td>GHS{{ number_format($sale->total_price, 2) }}</td>
                                 <td>{{ $sale->attendant ?? 'N/A' }}</td>
                                 <td>
