@@ -22,6 +22,7 @@
                         @csrf
                         <div id="product-list">
                             <!-- Initial Product Item -->
+                            
                             <div class="product-item mb-3">
                                 <div class="row g-3">
                                     <div class="col-md-5">
