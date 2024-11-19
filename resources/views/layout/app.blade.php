@@ -81,7 +81,7 @@
 
             @yield('content') <!-- Dynamic Page Content -->
 
-            {{-- @include('layout.footer') <!-- Footer (optional) --> --}}
+            @include('layout.footer') <!-- Footer (optional) -->
         </div>
 
         <!-- Back to Top Button -->
