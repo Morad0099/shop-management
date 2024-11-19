@@ -22,6 +22,9 @@ class ProductController extends Controller
             $query->where('category', $request->category);
         }
 
+         // Order by creation date in descending order
+        $query->orderBy('created_at', 'desc');
+
         // Paginate results
         $products = $query->paginate(10);
 
@@ -46,6 +49,7 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'stock' => 'required|integer',
             'image' => 'nullable|file|max:2048',
+            'size' => 'nullable|in:Small,Large,Medium',
         ]);
 
         if ($request->hasFile('image')) {
@@ -77,6 +81,7 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'stock' => 'required|integer',
             'image' => 'nullable|file|max:2048',
+            'size' => 'nullable|in:Small,Large,Medium',
         ]);
 
         if ($request->hasFile('image')) {

@@ -12,9 +12,29 @@ class SaleController extends Controller
 {
     public function index()
     {
-        $sales = Sale::with('product')->orderBy('sale_date', 'desc')->paginate(10);
+        $sales = Sale::with('product')
+            ->whereDate('sale_date', now()->toDateString()) // Filter sales for the current day
+            ->orderBy('sale_date', 'desc')
+            ->paginate(10);
+
         return view('modules.sales.index', compact('sales'));
     }
+
+    public function show(Request $request)
+    {
+        $query = Sale::with('product');
+
+        // Filter by date
+        if ($request->has('date') && $request->date) {
+            $query->whereDate('sale_date', $request->date);
+        }
+
+        $sales = $query->orderBy('sale_date', 'desc')->paginate(10);
+
+        return view('modules.sales.history', compact('sales'));
+    }
+
+
 
     public function create()
     {

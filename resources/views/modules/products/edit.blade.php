@@ -35,6 +35,17 @@
                         @enderror
                     </div>
 
+                    <!-- Size -->
+                    <div class="mb-3">
+                        <label for="size" class="form-label">Size</label>
+                        <select name="size" id="size" class="form-select" >
+                            <option value="">Select Size</option>
+                            <option value="Small" {{ $product->size === 'Small' ? 'selected' : '' }}>Small</option>
+                            <option value="Large" {{ $product->size === 'Large' ? 'selected' : '' }}>Large</option>
+                            <option value="Medium" {{ $product->size === 'Medium' ? 'selected' : '' }}>Medium</option>
+                        </select>
+                    </div>                    
+
                     <!-- Description -->
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>

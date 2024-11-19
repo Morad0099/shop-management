@@ -26,6 +26,7 @@
                         <option value="Products">Products</option>
                         <option value="Users">Users</option>
                         <option value="Sales">Sales</option>
+                        <option value="Sales History">Sales History</option>
                         <option value="Low Stock">Low Stock</option>
                         <option value="Dashboard">Dashboard</option>
                         <option value="Reports">Reports</option>

@@ -21,8 +21,11 @@
                 <a href="{{ route('products.index') }}" class="nav-item nav-link {{ request()->is('products*') ? 'active' : '' }}">
                     <i class="fa fa-box"></i> Products
                 </a>
-                <a href="{{ route('sales.index') }}" class="nav-item nav-link {{ request()->is('sales*') ? 'active' : '' }}">
+                <a href="{{ route('sales.index') }}" class="nav-item nav-link {{ request()->is('sales') ? 'active' : '' }}">
                     <i class="fa fa-shopping-cart"></i> Sales
+                </a>
+                <a href="{{ route('sales.history') }}" class="nav-item nav-link {{ request()->is('sales/history*') ? 'active' : '' }}">
+                    <i class="fa fa-history"></i> Sales History
                 </a>
                 <a href="{{ route('reports.index') }}" class="nav-item nav-link {{ request()->is('reports*') ? 'active' : '' }}">
                     <i class="fa fa-file-alt"></i> Reports

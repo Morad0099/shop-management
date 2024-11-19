@@ -90,5 +90,50 @@
             console.error('Error fetching chart data:', err);
         }
     });
-
+    document.addEventListener('DOMContentLoaded', () => {
+        const selects = document.querySelectorAll('.custom-select');
+    
+        selects.forEach((select) => {
+            const searchInput = select.querySelector('.custom-search');
+            const optionsList = select.querySelector('.custom-options');
+            const hiddenInput = select.querySelector('input[type="hidden"]');
+    
+            // Toggle dropdown visibility
+            searchInput.addEventListener('focus', () => {
+                select.classList.add('open');
+            });
+    
+            // Close dropdown on click outside
+            document.addEventListener('click', (e) => {
+                if (!select.contains(e.target)) {
+                    select.classList.remove('open');
+                }
+            });
+    
+            // Filter options
+            searchInput.addEventListener('input', () => {
+                const filter = searchInput.value.toLowerCase();
+                const options = optionsList.querySelectorAll('li');
+    
+                options.forEach((option) => {
+                    const text = option.textContent.toLowerCase();
+                    option.style.display = text.includes(filter) ? 'block' : 'none';
+                });
+            });
+    
+            // Select an option
+            optionsList.addEventListener('click', (e) => {
+                if (e.target.tagName === 'LI') {
+                    const selectedValue = e.target.getAttribute('data-value');
+                    const selectedText = e.target.textContent;
+    
+                    hiddenInput.value = selectedValue;
+                    searchInput.value = selectedText;
+    
+                    select.classList.remove('open');
+                }
+            });
+        });
+    });
+    
 })(jQuery);

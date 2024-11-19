@@ -19,6 +19,15 @@
                 <input type="text" class="form-control" id="category" name="category" required>
             </div>
             <div class="mb-3">
+                <label for="size" class="form-label">Size</label>
+                <select name="size" id="size" class="form-select">
+                    <option value="">Select Size</option>
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>                   
+                    <option value="Large">Large</option>
+                </select>
+            </div>            
+            <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
                 <input type="number" step="0.01" class="form-control" id="price" name="price" required>
             </div>
@@ -32,7 +41,7 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Product Image</label>
-                <input type="file" class="form-control" id="image" name="image" required>
+                <input type="file" class="form-control" id="image" name="image">
             </div>
             <button type="submit" class="btn btn-primary">Add Product</button>
         </form>

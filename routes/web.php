@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth','audit.log']], function () {
     // Route::get('audit-logs', [AuditLogController::class, 'index'])->name('audit-logs.index');
     Route::get('audit-logs', [AuditLogController::class, 'index'])->name('audit-logs.index');
     Route::get('audit-logs/export/{type}', [AuditLogController::class, 'export'])->name('audit-logs.export');
+    Route::get('/sales/history', [SaleController::class, 'show'])->name('sales.history');
 });
 
 
