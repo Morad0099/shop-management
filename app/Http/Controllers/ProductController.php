@@ -22,17 +22,18 @@ class ProductController extends Controller
             $query->where('category', $request->category);
         }
 
-         // Order by creation date in descending order
+        // Order by creation date in descending order
         $query->orderBy('created_at', 'desc');
 
-        // Paginate results
-        $products = $query->paginate(10);
+        // Paginate results and append query parameters
+        $products = $query->paginate(10)->appends($request->query());
 
         // Get unique categories for the filter dropdown
         $categories = Product::pluck('category')->unique();
 
         return view('modules.products.index', compact('products', 'categories'));
     }
+
 
 
     public function create()
@@ -90,7 +91,7 @@ class ProductController extends Controller
                 $relativePath = str_replace(config('app.url') . '/uploads/', '', $product->image); // Remove full URL part
                 Storage::disk('public_uploads')->delete($relativePath);
             }
-    
+
             // Store new image and concatenate app URL
             $path = $request->file('image')->storeAs(
                 'products',
