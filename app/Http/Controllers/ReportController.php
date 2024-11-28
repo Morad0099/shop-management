@@ -28,7 +28,7 @@ class ReportController extends Controller
         ->selectRaw('product_id, sum(quantity) as total_quantity, sum(total_price) as total_revenue')
         ->groupBy('product_id')
         ->orderBy('total_quantity', 'desc')
-        ->get();
+        ->paginate(10);
 
     $salesChartLabels = Sale::whereBetween('sale_date', [$startDate, $endDate])
         ->groupBy('sale_date')

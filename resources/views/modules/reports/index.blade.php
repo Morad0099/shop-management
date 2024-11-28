@@ -90,6 +90,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="mt-4 d-flex justify-content-center">
+                    {{ $detailedReports->links('pagination::bootstrap-4') }}
+                </div>
             </div>
         </div>
     </div>
