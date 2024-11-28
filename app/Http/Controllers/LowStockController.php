@@ -14,7 +14,7 @@ class LowStockController extends Controller
         // Fetch products with low stock, e.g., stock <= 10
         $lowStockProducts = Product::where('stock', '<=', 10)
             ->orderBy('stock', 'asc')
-            ->get();
+            ->paginate(10);
 
         return view('modules.low_stock.index', compact('lowStockProducts'));
     }

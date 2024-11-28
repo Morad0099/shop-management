@@ -64,6 +64,9 @@
                         <span class="badge bg-info">Moderate:</span> Stock Greater Than 5
                     </div>
                 @endif
+                <div class="mt-3 d-flex justify-content-center">
+                    {{ $lowStockProducts->links('pagination::bootstrap-4') }}
+                </div>
             </div>
             
         </div>
