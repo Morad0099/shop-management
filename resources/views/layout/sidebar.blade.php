@@ -31,7 +31,7 @@
                     <i class="fa fa-file-alt"></i> Reports
                 </a>
                 <a href="{{ route('low-stock.index') }}" class="nav-item nav-link {{ request()->is('low-stock*') ? 'active' : '' }}">
-                    <i class="fa fa-exclamation-triangle"></i> Low Stock
+                    <i class="fa fa-exclamation-triangle"></i> Stock Management
                 </a>
                 <a href="{{ route('users.index') }}" class="nav-item nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
                     <i class="fa fa-users me-2"></i>User Management

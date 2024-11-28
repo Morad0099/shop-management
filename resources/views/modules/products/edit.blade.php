@@ -43,6 +43,7 @@
                             <option value="Small" {{ $product->size === 'Small' ? 'selected' : '' }}>Small</option>
                             <option value="Large" {{ $product->size === 'Large' ? 'selected' : '' }}>Large</option>
                             <option value="Medium" {{ $product->size === 'Medium' ? 'selected' : '' }}>Medium</option>
+                            <option value="Extra Large" {{ $product->size === 'Extra Large' ? 'selected' : '' }}>Extra Large</option>
                         </select>
                     </div>                    
 

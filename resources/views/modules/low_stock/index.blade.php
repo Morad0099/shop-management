@@ -17,6 +17,7 @@
                         <thead class="table-dark">
                             <tr>
                                 <th>Product</th>
+                                <th>Size</th>
                                 <th>Category</th>
                                 <th>Current Stock</th>
                                 <th>Stock Level</th>
@@ -28,6 +29,7 @@
                             @forelse ($lowStockProducts as $product)
                                 <tr>
                                     <td>{{ $product->name }}</td>
+                                    <td>{{ $product->size ?? 'N/A'}}</td>
                                     <td>{{ $product->category }}</td>
                                     <td>{{ $product->stock }}</td>
                                     <td>
