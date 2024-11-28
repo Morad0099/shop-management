@@ -16,6 +16,7 @@
                             <thead>
                                 <tr>
                                     <th>Date</th>
+                                    <th>Time</th>
                                     <th>Product</th>
                                     <th>Quantity</th>
                                     <th>Total Price</th>
@@ -27,6 +28,7 @@
                                 @forelse ($sales as $sale)
                                     <tr>
                                         <td>{{ $sale->sale_date }}</td>
+                                        <td>{{ $sale->created_at->format('h:i:s A') }}</td>
                                         <td>
                                             @if ($sale->product)
                                                 {{ $sale->product->name }}

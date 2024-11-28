@@ -80,6 +80,7 @@
                             <thead>
                                 <tr>
                                     <th>Date</th>
+                                    <th>Time</th>
                                     <th>Product</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
@@ -90,6 +91,7 @@
                                 @forelse ($recentSales as $sale)
                                     <tr>
                                         <td>{{ $sale->created_at->format('Y-m-d') }}</td>
+                                        <td>{{ $sale->created_at->format('h:i:s A') }}</td>
                                         <td>{{ $sale->product->name ?? null}}</td>
                                         <td>{{ $sale->quantity ?? null}}</td>
                                         <td>GHS{{ number_format($sale->total_price, 2) }}</td>
