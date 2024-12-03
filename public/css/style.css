@@ -46,7 +46,7 @@
 .custom-options li {
     padding: 10px;
     cursor: pointer;
-    margin-left: -250px;
+    /* margin-left: -250px; */
     /* align-items: left !important; */
 }
 
